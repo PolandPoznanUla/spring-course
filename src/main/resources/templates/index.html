@@ -1,11 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http//www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
     <title>Title</title>
 </head>
 <body>
-<h1>Hello world</h1>
+<h1 th:text="'Hello ' + ${firstName}">Hello world</h1>
+<p th:text="'Your phone number is ' + ${phoneNumber}">1234567</p>
+<p th:text="'Reversed message is ' + ${message}"></p>
+<p th:text="'Reversed message with lowerCase is ' + ${message}"></p>
+<div>
+    <H2 th:text="'User first name is ' + ${user.firstName}">First Name</H2>
+    <H2 th:text="'User last name is ' + ${user.lastName}">First Name</H2>
+    <p th:text="'Phopne number: ' + ${user.phoneNumber}">Phone Number</p>
+</div>
+
+
+
+
 </body>
 </html>
 
@@ -19,4 +31,6 @@ jezeli uppercase -> true, to male litery na wielkie
 jezeli lowercase -> true, to wielkie litery na male (edited)
 
  19.09 Andersia kariera w IT
- thymeleaf spring boot -->
+ thymeleaf spring boot
+ sling
+ -->
