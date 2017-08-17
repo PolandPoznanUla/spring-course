@@ -1,19 +1,18 @@
 package com.sda.springcourse.model;
 
-/**
- * Created by RENT on 2017-08-16.
- */
 public class User {
     private Integer id;
+
     private String firstName;
+
     private String lastName;
+
     private String phoneNumber;
 
     public User() {
     }
 
     public User(Integer id, String firstName, String lastName, String phoneNumber) {
-
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -21,7 +20,6 @@ public class User {
     }
 
     public Integer getId() {
-
         return id;
     }
 

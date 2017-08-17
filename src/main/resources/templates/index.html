@@ -1,36 +1,20 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http//www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
     <title>Title</title>
 </head>
 <body>
-<h1 th:text="'Hello ' + ${firstName}">Hello world</h1>
-<p th:text="'Your phone number is ' + ${phoneNumber}">1234567</p>
-<p th:text="'Reversed message is ' + ${message}"></p>
-<p th:text="'Reversed message with lowerCase is ' + ${message}"></p>
-<div>
-    <H2 th:text="'User first name is ' + ${user.firstName}">First Name</H2>
-    <H2 th:text="'User last name is ' + ${user.lastName}">First Name</H2>
-    <p th:text="'Phopne number: ' + ${user.phoneNumber}">Phone Number</p>
+<!--/*@thymesVar id="firstName" type="java.lang.String"*/-->
+<h1 th:text="'Hello ' + ${firstName}">Hello World</h1>
+<!--/*@thymesVar id="phoneNumber" type="java.lang.Integer"*/-->
+<p th:text="'You\'r phone number is ' + ${phoneNumber}">+48 123 456 789</p>
+<h2 th:text="${message}"></h2>
+<div th:if="${user}">
+    <!--/*@thymesVar id="user" type="com.sda.springcourse.model.User"*/-->
+    <h2 th:text="${user.firstName}">First Name</h2>
+    <h2 th:text="${user.lastName}">Last Name</h2>
+    <p th:text="${user.phoneNumber}">Phone number</p>
 </div>
-
-
-
-
 </body>
 </html>
-
-<!-- 1. w pakiecie controller HomeController -> /home
-2. w pakiecie service klasa ReverseService z jedna metoda, ktora odwraca zadanego stringa
-rejestrujemy go jako beana i dorzucamy jak zaleznosc w controller
-3. w HomeController dodajemy kolejną metode na home, ale tym razem przechwytujemy query parametr
-który przekazujemy do serwisu
-4. dodac do ReverseService pola boolean uppercase, boolean lowercase,
-jezeli uppercase -> true, to male litery na wielkie
-jezeli lowercase -> true, to wielkie litery na male (edited)
-
- 19.09 Andersia kariera w IT
- thymeleaf spring boot
- sling
- -->
