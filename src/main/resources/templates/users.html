@@ -5,6 +5,11 @@
     <title>Users</title>
 </head>
 <body>
-
+<ul>
+    <li th:each="user : ${users}">
+        <h1 th:text="${user.firstName} + ' '+ ${user.lastName} ">Ula Radoń</h1>
+        <p th:text="'phone number ' + ${user.phoneNumber}">123 456 789</p>
+    </li>
+</ul>
 </body>
 </html>
