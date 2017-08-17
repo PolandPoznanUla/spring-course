@@ -7,6 +7,7 @@
 <body>
 <ul>
     <li th:each="user : ${users}">
+        <a th:href="'/test/users/' + ${user.id}"  href="#">Profile</a>
         <h1 th:text="${user.firstName} + ' '+ ${user.lastName} ">Ula Radoń</h1>
         <p th:text="'phone number ' + ${user.phoneNumber}">123 456 789</p>
     </li>

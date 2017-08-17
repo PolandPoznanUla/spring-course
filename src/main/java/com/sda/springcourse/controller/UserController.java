@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping(path="/test/users")
+@RequestMapping(path="/users")
 public class UserController {
 
     @Autowired
