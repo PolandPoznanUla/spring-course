@@ -8,4 +8,7 @@ public interface NewsRepository {
     List<News> getAll();
 
     News getById(Integer id);
+
+    List<News> getByUserId(Integer userId);
+
 }

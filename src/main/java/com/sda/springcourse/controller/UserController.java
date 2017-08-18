@@ -1,5 +1,6 @@
 package com.sda.springcourse.controller;
 
+import com.sda.springcourse.repository.NewsRepository;
 import com.sda.springcourse.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,9 @@ public class UserController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private NewsRepository newsRepository;
 
     @RequestMapping
     public ModelAndView users() {
@@ -33,6 +37,7 @@ public class UserController {
     public ModelAndView specifiedUser(@PathVariable("id") Integer userId) {
         ModelAndView modelAndView = new ModelAndView("user");
         modelAndView.addObject("user", userRepository.getById(userId));
+        modelAndView.addObject("allNews",newsRepository.getByUserId(userId));
         return modelAndView;
     }
     //requestMapping (/test/users)

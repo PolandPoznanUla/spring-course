@@ -1,13 +1,116 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8"/>
+    <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        .alert-error {
+            background-color: red;
+        }
+        .alert-basic {
+            background-color: green;
+        }
+
+
+
+
+
+    </style>
 </head>
 <body>
+<div th:replace="fragments/alert :: alert (message='ok', type='basic')"></div>
 <div class="user-section">
+    <!--/*@thymesVar id="user" type="com.sda.springcourse.model.User"*/-->
     <h1 th:text="${user.firstName} + ' ' + ${user.lastName}">Szymon Nowak</h1>
     <p th:text="'Phone Number: ' + ${user.phoneNumber}">Phone Number: 123456789</p>
+</div>
+</br>
+<!--/*@thymesVar id="allNews" type="java.util.List<com.sda.springcourse.model.User>"*/-->
+<div th:if="${allNews}">
+    <div th:if="${allNews.isEmpty()}">
+        <div th:replace="fragments/alert :: alert(message='There is no news for current user', type='error')"
+             class="alert alert-error">
+            <h1>There is no news for current user</h1>
+        </div>
+    </div>
+    <div th:include="fragments/news :: basic-news-table (allNews=${allNews})"
+         th:unless="${allNews.isEmpty()}" style="padding: 0 10% 0 10%">
+        <table border="1">
+            <thead style="font-weight: bold;">
+            <td>Img</td>
+            <td>Title</td>
+            <td>Description</td>
+            <td>Link</td>
+            </thead>
+            <tbody>
+            <!--/*@thymesVar id="allNews" type="java.util.List<com.sda.springcourse.model.News>"*/-->
+            <tr>
+                <td>
+                    <img style="width: 100px; height: 100px;"
+                         src="http://www.dailyworldfacts.com/wp-content/uploads/2011/06/facts-about-cat-fallen-cat.jpg"/>
+                </td>
+                <td>
+                    <h1>First Cat</h1>
+                </td>
+                <td>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                        quis
+                        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+                        irure
+                        dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                        Excepteur
+                        sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
+                        laborum</p>
+                </td>
+                <td>
+                    <a href="/news/1">Link</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<br/>
+<br/>
+<br/>
+
+<div class="container">
+
+    <form action="" method="POST" role="form">
+
+        <input type="hidden" value="1" name="userId" th:value="${user.id}">
+
+        <legend>Title</legend>
+
+        <label for="title"></label>
+        <input type="text" class="form-control" name="title" id="title" placeholder="put your text here">
+
+
+        <legend>Description</legend>
+
+        <label for="description"></label>
+        <input type="text" class="form-control" name="description" id="description"
+               placeholder="put your text here">
+
+
+        <legend>Small img link</legend>
+
+        <label for="smallImgLink"></label>
+        <input type="text" class="form-control" name="smallImgLink" id="smallImgLink"
+               placeholder="put your text here">
+
+
+        <legend>Big img link</legend>
+
+        <label for="bigImgLink"></label>
+        <input type="text" class="form-control" name="bigImgLink" id="bigImgLink" placeholder="put your text here">
+<br/>
+<br/>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
 </div>
 
 </body>

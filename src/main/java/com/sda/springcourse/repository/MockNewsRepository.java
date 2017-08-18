@@ -7,6 +7,7 @@ import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class MockNewsRepository implements NewsRepository {
@@ -28,6 +29,14 @@ public class MockNewsRepository implements NewsRepository {
     @Override
     public News getById(Integer id) {
         return newsList.get(id);
+    }
+
+    @Override
+    public List<News> getByUserId(Integer userId) {
+
+        return getAll().stream()
+                .filter(news -> news.getUserId().equals(userId))
+                .collect(Collectors.toList());
     }
 
     @PostConstruct
