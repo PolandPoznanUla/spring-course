@@ -1,7 +1,6 @@
 package com.sda.springcourse.controller;
 
 import com.sda.springcourse.repository.NewsRepository;
-import com.sda.springcourse.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,17 +15,16 @@ public class NewsController {
     private NewsRepository newsRepository;
 
     @RequestMapping
-    public ModelAndView allNews() {
+    public ModelAndView news() {
         ModelAndView modelAndView = new ModelAndView("allNews");
         modelAndView.addObject("allNews", newsRepository.getAll());
         return modelAndView;
     }
 
-    @RequestMapping(value = "/{newsId}")
-    public ModelAndView news(@PathVariable("newsId") Integer id) {
+    @RequestMapping(path = "/{newsId}")
+    public ModelAndView singleNews(@PathVariable("newsId") Integer id) {
         ModelAndView modelAndView = new ModelAndView("news");
         modelAndView.addObject("news", newsRepository.getById(id));
         return modelAndView;
     }
-
 }

@@ -11,41 +11,42 @@ import java.util.List;
 @Component
 public class MockNewsRepository implements NewsRepository {
 
-    private List<News> news;
+    private List<News> newsList;
 
-    public MockNewsRepository(List<News> news) {
-        this.news = news;
+    public MockNewsRepository() {
+        this.newsList = new ArrayList<>();
     }
 
     @Override
     public List<News> getAll() {
-//        ArrayList<News> tmpList = new ArrayList<>();
-//        Collections.copy(tmpList, news);
+//        List<News> tmpList = new ArrayList<>();
+//        Collections.copy(tmpList, newsList);
 //        return tmpList;
-        return news;
+        return newsList;
     }
 
     @Override
     public News getById(Integer id) {
-        return news.get(id);
+        return newsList.get(id);
     }
 
     @PostConstruct
     public void init() {
-        News news0 = new News(0, "one", "Lorem ipsum", "http://static.boredpanda.com/blog/wp-content/uploads/2016/08/cute-kittens-69-57b32c431e8a7__605.jpg", "#bigImgLink", 1);
-        News news1 = new News(1, "one", "Lorem ipsum", "http://static.boredpanda.com/blog/wp-content/uploads/2016/08/cute-kittens-69-57b32c431e8a7__605.jpg", "#bigImgLink", 1);
-        News news2 = new News(2, "two", "Lorem ipsum", "http://www.eastcottvets.co.uk/uploads/Animals/gingerkitten.jpg", "#bigImgLink", 1);
-        News news3 = new News(3, "three", "Lorem ipsum", "http://orig15.deviantart.net/e713/f/2012/232/5/5/5500da4f26123863ed7ad221e176a77e-d5bqwsc.jpg", "#bigImgLink", 1);
-        News news4 = new News(4, "four", "Lorem ipsum", "http://cdn3-www.cattime.com/assets/uploads/2011/08/best-kitten-names-1.jpg", "#bigImgLink", 1);
-        News news5 = new News(5, "five", "Lorem ipsum", "https://i.pinimg.com/236x/95/a6/27/95a627a10fc1137f42cd5ca88aa47824--persian-kittens-orange-persian-kitten.jpg", "#bigImgLink", 1);
+        News newsArticle = new News(0, "Policja bije bezbronnych!", "Policja bije biednych i bezbronnych obywateli! Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+                "http://karkolomny.blog.pl/files/2017/05/policja-bije-900x631.jpg", "http://karkolomny.blog.pl/files/2017/05/policja-bije-900x631.jpg", 1);
+        News newsArticle2 = new News(1, "SZOK! Kaczynski jest kobietą!!", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+                "https://img2.cda.pl/g/16713_16c9611659bb23788c7ac11ac25eda9b.jpeg", "https://img2.cda.pl/g/16713_16c9611659bb23788c7ac11ac25eda9b.jpeg", 2);
+        News newsArticle3 = new News(2, "NIEDOWIERZANIE! LEKARZE ICH NIENAWIDZĄ!", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                "https://i1.kwejk.pl/k/obrazki/2016/06/baa89ad83053312302baf90b6b15f6b4.jpg", "https://i1.kwejk.pl/k/obrazki/2016/06/baa89ad83053312302baf90b6b15f6b4.jpg", 2);
+        News newsArticle4 = new News(3, "HAZARDZISCI GO NIENAWIDZA! SZOKUJACE!", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                "http://www.penera.pl/upload/images/2016/02/hazardzisci_go_nienawidza_2016-02-29_14-46-47.jpg", "http://www.penera.pl/upload/images/2016/02/hazardzisci_go_nienawidza_2016-02-29_14-46-47.jpg", 2);
+        News newsArticle5 = new News(4, "Policja nieskuteczna! Nie potrafia złapać dziaka bez nogi!", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                "http://www.blasty.pl/upload/images/large/2016/06/nie-mamy-sie-do-czego-przyczepic_2016-06-23_16-59-55.jpg", "http://www.blasty.pl/upload/images/large/2016/06/nie-mamy-sie-do-czego-przyczepic_2016-06-23_16-59-55.jpg", 1);
 
-        news.add(news0);
-        news.add(news1);
-        news.add(news2);
-        news.add(news3);
-        news.add(news4);
-        news.add(news5);
+        newsList.add(newsArticle);
+        newsList.add(newsArticle2);
+        newsList.add(newsArticle3);
+        newsList.add(newsArticle4);
+        newsList.add(newsArticle5);
     }
 }
-
-

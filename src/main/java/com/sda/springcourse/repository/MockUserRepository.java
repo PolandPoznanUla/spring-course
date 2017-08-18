@@ -36,7 +36,7 @@ public class MockUserRepository implements UserRepository {
 
     @PostConstruct
     public void init() {
-        User user0 = new User(0, "Szymon", "Kot", "2345677889");
+        User user0 = new User(0, "Edyta", "Kwasniewska", "822548493123");
         User user = new User(1, "Szymon", "Nowak", "12345677889");
         User user1 = new User(2, "Anna", "Kowalska", "6785939573");
         User user2 = new User(3, "Andrzej", "Duda", "8472547593");

@@ -2,22 +2,24 @@ package com.sda.springcourse.model;
 
 import org.apache.commons.lang3.StringUtils;
 
-/**
- * Created by RENT on 2017-08-17.
- */
 public class News {
+
     private Integer id;
+
     private String title;
+
     private String description;
+
     private String smallImgLink;
+
     private String bigImgLink;
+
     private Integer userId;
 
     public News() {
     }
 
     public News(Integer id, String title, String description, String smallImgLink, String bigImgLink, Integer userId) {
-
         this.id = id;
         this.title = title;
         this.description = description;
@@ -26,9 +28,7 @@ public class News {
         this.userId = userId;
     }
 
-
     public Integer getId() {
-
         return id;
     }
 

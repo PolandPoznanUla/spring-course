@@ -1,17 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
-    <title>News</title>
+    <title>Title</title>
 </head>
 <body>
 <div>
+    <!--/*@thymesVar id="news" type="com.sda.springcourse.model.News"*/-->
     <h1 th:text="${news.title}">Title</h1>
     <h6 th:text="${news.abbreviateDescription}">Abbreviate description</h6>
     <br/>
-    <img style th:src="${news.bigImgLink}" src="http://kittenrescue.org/wp-content/uploads/2017/03/KittenRescue_KittenCareHandbook.jpg">
+    <img style="width: auto; height: 200px" th:src="${news.bigImgLink}" src="http://wszystkookotach.pl/wp-content/uploads/2016/04/kot-celtycki-krotkowlosy.jpg"/>
     <br/>
-    <p th:text="${news.description}">Lorem ipsum</p>
+    <p th:text="${news.description}">Lorem Ipsum sit dolor</p>
 </div>
 </body>
 </html>

@@ -14,7 +14,7 @@
     <!--/*@thymesVar id="user" type="com.sda.springcourse.model.User"*/-->
     <h2 th:text="${user.firstName}">First Name</h2>
     <h2 th:text="${user.lastName}">Last Name</h2>
-    <p th:text="${user.phoneNumber}">Phone number</p>
+    <p th:if="${user.phoneNumber > 10000000}" th:text="${user.phoneNumber}">Phone number</p>
 </div>
 </body>
 </html>
