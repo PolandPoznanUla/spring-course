@@ -1,12 +1,12 @@
 package com.sda.springcourse.controller;
 
+import com.sda.springcourse.model.News;
 import com.sda.springcourse.repository.NewsRepository;
 import com.sda.springcourse.repository.UserRepository;
+import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -40,7 +40,16 @@ public class UserController {
         modelAndView.addObject("allNews",newsRepository.getByUserId(userId));
         return modelAndView;
     }
-    //requestMapping (/test/users)
-    //requestMapping (/test/users) ?lastName (startsWith)
-    //requestMapping (/test/users/{userId}) -> user.html
+
+    @PostMapping(path = "/{userId}/news")
+    public ModelAndView addUser(@ModelAttribute News news, @PathVariable("userId") Integer userId) {
+        boolean creationStatus = newsRepository.add(news);
+        ModelAndView modelAndView = new ModelAndView("user");
+        modelAndView.addObject("user", userRepository.getById(userId));
+        modelAndView.addObject("allNews",newsRepository.getByUserId(userId));
+        modelAndView.addObject("creationStatus", creationStatus);
+        modelAndView.addObject("creationSuccessMessage", "Successfully added news");
+        modelAndView.addObject("creationErrorMessage", "Couldn't create news"); //dokonczyc
+        return modelAndView;
+    }
 }

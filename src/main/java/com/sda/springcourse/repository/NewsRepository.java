@@ -11,4 +11,5 @@ public interface NewsRepository {
 
     List<News> getByUserId(Integer userId);
 
+    boolean add(News news);
 }

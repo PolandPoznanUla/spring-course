@@ -10,11 +10,6 @@
         .alert-basic {
             background-color: green;
         }
-
-
-
-
-
     </style>
 </head>
 <body>
@@ -27,9 +22,8 @@
 </br>
 <!--/*@thymesVar id="allNews" type="java.util.List<com.sda.springcourse.model.User>"*/-->
 <div th:if="${allNews}">
-    <div th:if="${allNews.isEmpty()}">
-        <div th:replace="fragments/alert :: alert(message='There is no news for current user', type='error')"
-             class="alert alert-error">
+    <div th:if="${allNews.isEmpty()}" >
+        <div th:replace="fragments/alert :: alert(message='There is no news for current user', type='error')" class="alert alert-error">
             <h1>There is no news for current user</h1>
         </div>
     </div>
@@ -76,42 +70,25 @@
 <br/>
 <br/>
 
-<div class="container">
+<!--1. formularz wysyla post na /users/{id}/news-->
+<!--2. userId - hiddenFields-->
+<!--3. title description smallImgLink bigImgLink - field do wstawiania wartosci-->
 
-    <form action="" method="POST" role="form">
+1. UserController -> Tworzymy PostMapping na /users/{id}/news -> @ModelAttribute
+2. NewsRepository -> dodajemy metode add(News news)
+3. powyzsza metode uzywamy w postMappingu
+4. wyswietlamy alert succes message: Successfully added news
+<form method="post" action="/users/0/news" th:action="'/users/' + ${user.id} + '/news'">
+    <input type="hidden" value="0" name="userId" th:value="${user.id}">
 
-        <input type="hidden" value="1" name="userId" th:value="${user.id}">
+    <input type="text" placeholder="title" name="title">
+    <input type="text" placeholder="description" name="description">
+    <input type="text" placeholder="smallImgLink" name="smallImgLink">
+    <input type="text" placeholder="bigImgLink" name="bigImgLink">
 
-        <legend>Title</legend>
+    <button type="submit">Submit</button>
+</form>
 
-        <label for="title"></label>
-        <input type="text" class="form-control" name="title" id="title" placeholder="put your text here">
-
-
-        <legend>Description</legend>
-
-        <label for="description"></label>
-        <input type="text" class="form-control" name="description" id="description"
-               placeholder="put your text here">
-
-
-        <legend>Small img link</legend>
-
-        <label for="smallImgLink"></label>
-        <input type="text" class="form-control" name="smallImgLink" id="smallImgLink"
-               placeholder="put your text here">
-
-
-        <legend>Big img link</legend>
-
-        <label for="bigImgLink"></label>
-        <input type="text" class="form-control" name="bigImgLink" id="bigImgLink" placeholder="put your text here">
-<br/>
-<br/>
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-
-</div>
 
 </body>
 </html>
