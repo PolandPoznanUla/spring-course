@@ -14,15 +14,14 @@
     </li>
 </ul>
 
-<div class="alert-basic" th:replace="fragments/alert :: creationStatus-alert(status=${creationStatus})">//?
-    <h1>Add User</h1>
+<div class="alert-basic" th:replace="fragments/alert :: creationStatus-alert(status=${creationStatus})">
+    <h1>Sta</h1>us message
 </div>
 
-<form method="post" action="/users/0/news" th:action="'/users/' + ${user.id} + '/news'">//!!!
-    <input type="hidden" value="0" name="userId" th:value="${user.id}">
-    <input type="text" placeholder="firstName" name="firstName">
-    <input type="text" placeholder="lastName" name="lastName">
-    <input type="text" placeholder="phoneNumber" name="phoneNumber">
+<form method="post" action="/users">
+    <input type="text" name="firstName" placeholder="First Name">
+    <input type="text" name="lastName" placeholder="Last Name">
+    <input type="text" name="phoneNumber" placeholder="Phone Number">
     <button type="submit">Submit</button>
 </form>
 

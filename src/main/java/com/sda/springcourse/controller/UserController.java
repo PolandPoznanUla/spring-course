@@ -3,6 +3,7 @@ package com.sda.springcourse.controller;
 import com.sda.springcourse.model.CreationStatus;
 import com.sda.springcourse.model.CreationStatusFactory;
 import com.sda.springcourse.model.News;
+import com.sda.springcourse.model.User;
 import com.sda.springcourse.repository.NewsRepository;
 import com.sda.springcourse.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,21 +26,21 @@ public class UserController {
     @Autowired
     private CreationStatusFactory creationStatusFactory;
 
-    @RequestMapping
+    @GetMapping
     public ModelAndView users() {
         ModelAndView modelAndView = new ModelAndView("users");
         modelAndView.addObject("users", userRepository.getAll());
         return modelAndView;
     }
 
-    @RequestMapping(params = {"lastName"})
+    @GetMapping(params = {"lastName"})
     public ModelAndView usersByLastName(@RequestParam String lastName) {
         ModelAndView modelAndView = new ModelAndView("users");
         modelAndView.addObject("users", userRepository.getAllByLastName(lastName));
         return modelAndView;
     }
 
-    @RequestMapping(path = "/{id}")
+    @GetMapping(path = "/{id}")
     public ModelAndView specifiedUser(@PathVariable("id") Integer userId) {
         ModelAndView modelAndView = new ModelAndView("user");
         modelAndView.addObject("user", userRepository.getById(userId));
@@ -48,12 +49,24 @@ public class UserController {
     }
 
     @PostMapping(path = "/{userId}/news")
-    public ModelAndView addUser(@ModelAttribute News news, @PathVariable("userId") Integer userId) {
+    public ModelAndView addNews(@ModelAttribute News news, @PathVariable("userId") Integer userId) {
         boolean result = newsRepository.add(news);
         ModelAndView modelAndView = specifiedUser(userId);
         CreationStatus creationStatus = result ?
                 creationStatusFactory.createSuccessStatus("Successfully created news.") :
                 creationStatusFactory.createFailureStatus("Couldn't create news");
+
+        modelAndView.addObject("creationStatus", creationStatus);
+        return modelAndView;
+    }
+
+    @PostMapping
+    public ModelAndView addUser(@ModelAttribute User user) {
+        ModelAndView modelAndView = users();
+        boolean result = userRepository.add(user);
+        CreationStatus creationStatus = result ?
+                creationStatusFactory.createSuccessStatus("Successfully created user.") :
+                creationStatusFactory.createFailureStatus("Couldn't create user");
 
         modelAndView.addObject("creationStatus", creationStatus);
         return modelAndView;

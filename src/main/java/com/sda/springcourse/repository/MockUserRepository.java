@@ -34,6 +34,13 @@ public class MockUserRepository implements UserRepository {
         return users.get(id);
     }
 
+    @Override
+    public boolean add(User user) {
+        user.setId(users.size());
+        users.add(user);
+        return true;
+    }
+
     @PostConstruct
     public void init() {
         User user0 = new User(0, "Edyta", "Kwasniewska", "822548493123");
