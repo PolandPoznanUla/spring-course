@@ -12,5 +12,22 @@
     </div>
 </div>
 
+<div th:fragment="creationStatus-alert (status)">
+    <div th:if="${status}">
+        <div class="alert" th:classappend="${status.status} ? 'alert-basic' : 'alert-error'">
+            <h1 th:text="${status.message}">Alert Message</h1>
+        </div>
+    </div>
+</div>
+
+<!--<div th:fragment="creationStatus-alert2 (statusObject)">-->
+<!--<div th:if="${statusObject.status}">-->
+<!--<div th:replace="fragments/alert :: alert(message='${statusObject.message}', type='basic')"/>-->
+<!--</div>-->
+<!--<div th:unless="${statusObject.status}">-->
+<!--<div th:replace="fragments/alert :: alert(message='${statusObject.message}', type='error')"/>-->
+<!--</div>-->
+<!--</div>-->
+
 </body>
 </html>

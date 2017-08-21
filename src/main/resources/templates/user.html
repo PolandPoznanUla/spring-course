@@ -70,14 +70,10 @@
 <br/>
 <br/>
 
-<!--1. formularz wysyla post na /users/{id}/news-->
-<!--2. userId - hiddenFields-->
-<!--3. title description smallImgLink bigImgLink - field do wstawiania wartosci-->
+<div class="alert-basic" th:replace="fragments/alert :: creationStatus-alert(status=${creationStatus})">
+    <h1>Form Posting status message</h1>
+</div>
 
-1. UserController -> Tworzymy PostMapping na /users/{id}/news -> @ModelAttribute
-2. NewsRepository -> dodajemy metode add(News news)
-3. powyzsza metode uzywamy w postMappingu
-4. wyswietlamy alert succes message: Successfully added news
 <form method="post" action="/users/0/news" th:action="'/users/' + ${user.id} + '/news'">
     <input type="hidden" value="0" name="userId" th:value="${user.id}">
 
