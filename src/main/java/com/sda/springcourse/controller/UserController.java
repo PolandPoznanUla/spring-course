@@ -52,8 +52,8 @@ public class UserController {
 
     @PostMapping(path = "/{userId}/news")
     public ModelAndView addNews(@ModelAttribute News news, @PathVariable("userId") Integer userId) {
-        User user = userRepository.findOne(userId);
-        news.setUser(user);
+//        User user = userRepository.findOne(userId);
+//        news.setUser(user);
         newsRepository.save(news);
         ModelAndView modelAndView = specifiedUser(userId);
         CreationStatus creationStatus = true ?

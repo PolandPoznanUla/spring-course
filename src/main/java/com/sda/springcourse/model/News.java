@@ -13,6 +13,7 @@ public class News {
 
     private String title;
 
+    @Column(length = 300)
     private String description;
 
     private String smallImgLink;
