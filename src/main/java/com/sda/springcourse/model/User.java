@@ -1,10 +1,9 @@
 package com.sda.springcourse.model;
 
-import javax.persistence.GeneratedValue;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
 
 @Entity(name = "userTable")
 public class User {

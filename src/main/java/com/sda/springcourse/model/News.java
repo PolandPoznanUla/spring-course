@@ -2,8 +2,13 @@ package com.sda.springcourse.model;
 
 import org.apache.commons.lang3.StringUtils;
 
+import javax.persistence.*;
+
+@Entity(name = "newsTable")
 public class News {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private String title;
@@ -14,18 +19,18 @@ public class News {
 
     private String bigImgLink;
 
-    private Integer userId;
+    @ManyToOne
+    private User user;
 
     public News() {
     }
 
-    public News(Integer id, String title, String description, String smallImgLink, String bigImgLink, Integer userId) {
-        this.id = id;
+    public News(String title, String description, String smallImgLink, String bigImgLink, User user) {
         this.title = title;
         this.description = description;
         this.smallImgLink = smallImgLink;
         this.bigImgLink = bigImgLink;
-        this.userId = userId;
+        this.user = user;
     }
 
     public Integer getId() {
@@ -68,12 +73,12 @@ public class News {
         this.bigImgLink = bigImgLink;
     }
 
-    public Integer getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getAbbreviateDescription() {

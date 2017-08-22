@@ -1,10 +1,10 @@
 package com.sda.springcourse.model;
 
 public class CreationStatus {
-
     private boolean status;
 
     private String message;
+
 
     CreationStatus() {
     }

@@ -21,8 +21,8 @@ public class SpringCourseApplication {
 
 	@PostConstruct
 	public void init() {
-		repository.save(new User("Ula", "Radoń", "555 123 456"));
-		repository.save(new User("Ola", "Makota", "123 123 456"));
-		repository.save(new User("Szymon", "Nowak", "456 123 456"));
+		repository.save(new User("Szymon", "Nowak", "1245778"));
+		repository.save(new User("Jan", "Kowalski", "968744928492"));
+		repository.save(new User("Karolina", "Wisniewska", "875854764"));
 	}
 }

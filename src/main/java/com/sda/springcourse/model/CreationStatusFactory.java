@@ -5,7 +5,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class CreationStatusFactory {
 
-
     public CreationStatus createSuccessStatus(String message) {
         return createStatus(true, message);
     }

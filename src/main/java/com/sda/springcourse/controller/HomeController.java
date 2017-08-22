@@ -5,6 +5,7 @@ import com.sda.springcourse.repository.UserRepository;
 import com.sda.springcourse.service.ReverseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,7 +20,7 @@ public class HomeController {
     @Autowired
     private ReverseService lowerCaseService;
 
-    @RequestMapping(value = "/home")
+    @GetMapping(value = "/home")
     public ModelAndView home() {
         ModelAndView modelAndView = new ModelAndView("index");
         modelAndView.addObject("firstName", "Szymon");
@@ -27,7 +28,7 @@ public class HomeController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/home", params = "m")
+    @GetMapping(value = "/home", params = "m")
     public ModelAndView home(@RequestParam("m") String message) {
         String reverseMessage = reverseService.reverse(message);
         ModelAndView modelAndView = new ModelAndView("index");
@@ -37,7 +38,7 @@ public class HomeController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/home", params = {"m", "lowercase"})
+    @GetMapping(value = "/home", params = {"m", "lowercase"})
     public ModelAndView homeLowerCase(@RequestParam("m") String message,
                                       @RequestParam(value = "p", required = false, defaultValue = "1") Integer page) {
         String reverse = lowerCaseService.reverse(message);

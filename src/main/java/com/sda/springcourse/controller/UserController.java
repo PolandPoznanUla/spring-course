@@ -4,6 +4,7 @@ import com.sda.springcourse.model.CreationStatus;
 import com.sda.springcourse.model.CreationStatusFactory;
 import com.sda.springcourse.model.News;
 import com.sda.springcourse.model.User;
+import com.sda.springcourse.repository.JpaNewsRepository;
 import com.sda.springcourse.repository.JpaUserRepository;
 import com.sda.springcourse.repository.NewsRepository;
 import com.sda.springcourse.repository.UserRepository;
@@ -11,9 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
-import javax.validation.Valid;
-
 
 
 @Controller
@@ -24,7 +22,7 @@ public class UserController {
     private JpaUserRepository userRepository;
 
     @Autowired
-    private NewsRepository newsRepository;
+    private JpaNewsRepository newsRepository;
 
     @Autowired
     private CreationStatusFactory creationStatusFactory;
@@ -45,17 +43,20 @@ public class UserController {
 
     @GetMapping(path = "/{id}")
     public ModelAndView specifiedUser(@PathVariable("id") Integer userId) {
+        User user = userRepository.findOne(userId);
         ModelAndView modelAndView = new ModelAndView("user");
-        modelAndView.addObject("user", userRepository.findOne(userId));
-        modelAndView.addObject("allNews", newsRepository.getByUserId(userId));
+        modelAndView.addObject("user", user);
+        modelAndView.addObject("allNews", newsRepository.findByUser(user));
         return modelAndView;
     }
 
     @PostMapping(path = "/{userId}/news")
     public ModelAndView addNews(@ModelAttribute News news, @PathVariable("userId") Integer userId) {
-        boolean result = newsRepository.add(news);
+        User user = userRepository.findOne(userId);
+        news.setUser(user);
+        newsRepository.save(news);
         ModelAndView modelAndView = specifiedUser(userId);
-        CreationStatus creationStatus = result ?
+        CreationStatus creationStatus = true ?
                 creationStatusFactory.createSuccessStatus("Successfully created news.") :
                 creationStatusFactory.createFailureStatus("Couldn't create news");
 
@@ -70,8 +71,8 @@ public class UserController {
         CreationStatus creationStatus = true ?
                 creationStatusFactory.createSuccessStatus("Successfully created user.") :
                 creationStatusFactory.createFailureStatus("Couldn't create user");
-
         modelAndView.addObject("creationStatus", creationStatus);
         return modelAndView;
+
     }
 }

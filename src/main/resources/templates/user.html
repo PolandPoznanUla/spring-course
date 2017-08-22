@@ -13,7 +13,6 @@
     </style>
 </head>
 <body>
-<div th:replace="fragments/alert :: alert (message='ok', type='basic')"></div>
 <div class="user-section">
     <!--/*@thymesVar id="user" type="com.sda.springcourse.model.User"*/-->
     <h1 th:text="${user.firstName} + ' ' + ${user.lastName}">Szymon Nowak</h1>
@@ -75,7 +74,7 @@
 </div>
 
 <form method="post" action="/users/0/news" th:action="'/users/' + ${user.id} + '/news'">
-    <input type="hidden" value="0" name="userId" th:value="${user.id}">
+    <input type="hidden" value="0" name="user" th:value="${user.id}">
 
     <input type="text" placeholder="title" name="title">
     <input type="text" placeholder="description" name="description">

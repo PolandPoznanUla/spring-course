@@ -7,18 +7,17 @@
 <body>
 <div style="padding: 0 10% 0 10%">
     <table border="1">
-        <td>Remove</td>
         <thead style="font-weight: bold;">
         <td>Img</td>
         <td>Title</td>
         <td>Description</td>
         <td>Link</td>
+        <td>Remove</td>
         </thead>
         <tbody>
         <!--/*@thymesVar id="allNews" type="java.util.List<com.sda.springcourse.model.News>"*/-->
         <tr th:each="news : ${allNews}">
             <div th:if="${news}">
-
                 <td>
                     <img style="width: 100px; height: 100px;" th:src="${news.smallImgLink}"
                          src="http://www.dailyworldfacts.com/wp-content/uploads/2011/06/facts-about-cat-fallen-cat.jpg"/>
@@ -38,11 +37,13 @@
                     <a th:href="'/news/' + ${news.id}" href="/news/1">Link</a>
                 </td>
                 <td>
-                    <form method="post" action="/new/0/delete" th:action="'/news/' + ${news.id} + '/delete'">
-                        <button type="submit">X</button>
+                    <form method="post" action="/news/0/delete" th:action="'/news/' + ${news.id} +'/delete'">
+                        <button style="background-color: red" type="submit">X</button>
                     </form>
+                    <!--1. napisac metode boolean remove(Integer id) w NewsRepository i zaimplementowac ja w MockNewsRepository-->
+                    <!--2. napisac POST/DELETE Mapping w NewsController nie zwraca model and view, zwraca String "redirect:/news"-->
                 </td>
-                </div>
+            </div>
         </tr>
         </tbody>
     </table>
