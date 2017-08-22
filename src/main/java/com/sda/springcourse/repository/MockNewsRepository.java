@@ -46,6 +46,12 @@ public class MockNewsRepository implements NewsRepository {
         return true;
     }
 
+    @Override
+    public boolean remove(Integer id) {
+        newsList.remove(id.intValue());
+        return true;
+    }
+
     @PostConstruct
     public void init() {
         News newsArticle = new News(0, "Policja bije bezbronnych!", "Policja bije biednych i bezbronnych obywateli! Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",

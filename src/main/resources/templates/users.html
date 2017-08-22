@@ -8,7 +8,7 @@
 <ul>
     <!--/*@thymesVar id="users" type="java.util.List<com.sda.springcourse.model.User>"*/-->
     <li th:each="user : ${users}">
-        <a th:href="'/test/users/' + ${user.id}" href="#">Profile</a>
+        <a th:href="'/users/' + ${user.id}" href="#">Profile</a>
         <h1 th:text="${user.firstName} + ' ' + ${user.lastName}">Szymon Nowak</h1>
         <p th:text="'Phone Number: ' + ${user.phoneNumber}">Phone Number: 123457</p>
     </li>
